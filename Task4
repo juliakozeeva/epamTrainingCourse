@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Mod1_Lab4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                Console.Write("Enter the number: ");
+                int n = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine(Fact(n));
+                Console.ReadLine();
+            }
+            catch (InvalidParExc)
+            {
+                Console.WriteLine("Invalid parameter");
+                Console.ReadLine();
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("Overflow");
+                Console.ReadLine();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error");
+                Console.ReadLine();
+            }
+        }
+
+        static int Fact(int num)
+        {
+            if (num < 0)
+            {
+                throw new InvalidParExc();
+            }
+            checked
+            {
+                if (num == 1 || num == 0) return 1;
+                return num = num * Fact(num - 1);
+            }
+
+        }
+    }
+    class InvalidParExc : Exception
+    {
+
+    }
+}
