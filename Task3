@@ -10,15 +10,22 @@ namespace Mod1_Lab3
     {
         static void Main(string[] args)
         {
-            string[] str = "Привет осень! привет весна! Привет Лето".ToLower().Split(' ', '.', ',', ';', ':', '-', '?', '!');
+            Console.Write("Enter the phrase: ");
+            string str = Console.ReadLine(); 
+            UniqueWords(str);
+            Console.ReadLine();
+        }
 
-            for (int i = 0; i < str.Length; i++)
+        static void UniqueWords(string str)
+        {
+            string [] arr = str.ToLower().Split(' ', '.', ',', ';', ':', '-', '?', '!');
+            for (int i = 0; i < arr.Length; i++)
             {
                 int count = 0;
 
-                for (int j = 0; j < str.Length; j++)
+                for (int j = 0; j < arr.Length; j++)
                 {
-                    if (str[i] == str[j])
+                    if (arr[i] == arr[j])
                     {
                         count++;
                     }
@@ -26,11 +33,11 @@ namespace Mod1_Lab3
 
                 if (count == 1)
                 {
-                    Console.Write(str[i] + " ");
+                    
+                    Console.Write(arr[i] + " ");
                 }
             }
 
-            Console.ReadLine();
         }
     }
 }
