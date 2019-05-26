@@ -10,23 +10,32 @@ namespace Mod1_Lab2
     {
         static void Main(string[] args)
         {
-            int[] array = {1, 5, 9, 10, 18, 27, 34 };
-            SearchArray(array);
+            int[] array = { 1, 3, 5, 10, 28, 45 };
+            Console.Write("Enter the number: ");
+            int num = Convert.ToInt32(Console.ReadLine());
+            BinarySearch(array, num);
             Console.ReadLine();
         }
 
-        static void SearchArray(int[] array)
+        static void BinarySearch(int[] array, int num)
         {
-            Console.Write("Enter the number: ");
-            int num = Convert.ToInt32(Console.ReadLine());
-            if (array.Contains(num))
+            int first = 0;
+            int last = array.Length - 1;
+
+            while (first < last)
             {
-                Console.WriteLine("Array includes " + num);
+                int mid = first + (last - first) / 2;
+
+                if (num <= array[mid])
+                    last = mid;
+                else
+                    first = mid + 1;
             }
+
+            if (array[first] == num)
+                Console.WriteLine("The array includes this number with the index: {0}", (first));
             else
-            {
-                Console.WriteLine("Number is not defined");
-            }
+                Console.WriteLine("Number is not found");
         }
     }
 }
