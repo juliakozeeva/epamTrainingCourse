@@ -10,42 +10,56 @@ namespace Mod1_Lab4
     {
         static void Main(string[] args)
         {
+            FactInput();
+        }
+
+        static void FactInput ()
+        {
+                Console.Write("Enter the number: ");
+                if(int.TryParse(Console.ReadLine(), out int num) )
+                {                    
+                    Console.WriteLine(Fact(num));                                       
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect input");
+                }
+                Console.ReadLine();            
+        }
+
+        static int Fact(int num)
+        {
             try
             {
-                Console.Write("Enter the number: ");
-                int n = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine(Fact(n));
-                Console.ReadLine();
+                if (num < 0)
+                {
+                    throw new InvalidParExc();
+                }
+                checked //без данного ключевого слово не отлавливаются ошибки типа OverflowException
+                {
+                    if (num < 1) return 1;
+                    return num * Fact(num - 1);
+                }
             }
             catch (InvalidParExc)
             {
                 Console.WriteLine("Invalid parameter");
                 Console.ReadLine();
+                throw new InvalidParExc();
             }
             catch (OverflowException)
             {
                 Console.WriteLine("Overflow");
                 Console.ReadLine();
+                throw new OverflowException();
             }
             catch (Exception)
             {
                 Console.WriteLine("Error");
                 Console.ReadLine();
+                throw new Exception();
             }
-        }
-
-        static int Fact(int num)
-        {
-            if (num < 0)
-            {
-                throw new InvalidParExc();
-            }
-            checked
-            {
-                if (num == 1 || num == 0) return 1;
-                return num = num * Fact(num - 1);
-            }
-
+            
         }
     }
     class InvalidParExc : Exception
