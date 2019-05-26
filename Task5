@@ -1,0 +1,75 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Mod1_Lab5
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {           
+
+            BracketSequence();
+            Console.ReadLine();
+        }
+
+        static void BracketSequence()
+        {
+            Console.Write("Input bracket sequence:");
+            char[] str = Console.ReadLine().ToCharArray();
+            Stack<char> stack = new Stack<char>();            
+
+            string openBr = "([{";
+            string closeBr = ")]}";
+
+            bool correct = true;
+
+
+            if (str.Length % 2 !=0)
+            {
+                correct = false;
+            }
+            else
+            {
+                for (int i = 0; i < str.Length; i++)
+                {
+                   if (openBr.Contains(str[i]))
+                    {
+                        stack.Push(str[i]);
+                    }
+                   else
+                    {
+                        if (stack.Count() == 0)
+                        {
+                            correct = false;
+                            break;
+                        }
+                        else
+                        {
+                            if (openBr.IndexOf(stack.Peek()) == closeBr.IndexOf(str[i]))
+                            {
+                                stack.Pop();
+                            }
+                            else
+                            {
+                                correct = false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (correct)
+            {
+                Console.WriteLine("Correct sequence");
+            }
+            else
+            {
+                Console.WriteLine("Incorrect sequence");
+            }
+        }
+    }
+}
