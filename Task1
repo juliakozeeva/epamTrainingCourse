@@ -10,7 +10,7 @@ namespace Mod1_Lab1
     {
         static void Main()
         {
-            int[] array = { 8, 5, 4, 6 };
+            int[] array = { 0, 0, 0, 0 };
             Console.Write("\nArray before sorting: ");
             DisplayArray(array);
             SortArray(array);
